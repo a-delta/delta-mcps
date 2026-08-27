@@ -1,0 +1,30 @@
+<!-- @note
+DISCOVERY SCENE — an animated SVG data-flow graph. The engine builds this from
+the data-graph JSON attribute (or falls back to the built-in e-commerce example).
+
+The graph has three columns: sources (left), handlers (middle), sinks (right).
+Edges draw in left-to-right; nodes pop column by column; a travelling spark runs
+the highlighted "hot" path (source → handler → sink).
+
+To use your own data, set data-graph on the <section> tag with a JSON object:
+  {
+    "labels":  ["Where data comes in","Our application","Sensitive data"],
+    "sources": [{ "id":"s1","label":"Endpoint A","icon":"🌐","hot":true }, …],
+    "mids":    [{ "id":"m1","label":"Handler B","hot":true }, …],
+    "sinks":   [{ "id":"k1","label":"Database C","hot":true }, …],
+    "edges":   [["s1","m1"],["m1","k1"],…],
+    "hotPath": [["s1","m1"],["m1","k1"]]
+  }
+Omit data-graph entirely to use the built-in example.
+-->
+<section class="slide scene-slide" data-section="1" data-scene="discovery" data-file="examples/scene-discovery.html">
+  <div class="scene graph-scene">
+    <div class="graph-head">
+      <div class="kicker">Scene · discovery graph</div>
+      <h2>Mapping data flows across a system<span class="dot">.</span></h2>
+      <p class="lead">Edges draw in, nodes pop column by column, and a spark travels the highlighted path — good for showing how data moves from inputs through logic to storage.</p>
+    </div>
+    <svg class="graph-svg" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+    <div class="scan-tag"><span class="pulse"></span>replay on every visit · customise via data-graph</div>
+  </div>
+</section>

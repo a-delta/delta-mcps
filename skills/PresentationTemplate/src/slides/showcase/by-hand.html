@@ -1,0 +1,54 @@
+<!-- @note
+We have a simplified represtation of incident responders working on a security ticket today.
+
+NOTE: Pause on the new alerts coming in and emphasise them.
+
+1. We see the colleague raise the concern that their browser extension is showing as malware.
+2. The security analyst first has to perform web research, is the issue real, what does it do, how significant is the threat?
+3. They confirm the threat, extract the indicators they can search for across our estate and begin to do so.
+4. For each search and piece of analysis they do, they record their findings, those search commands in the ticket.
+5. As they're progressing with this analysis, more alerts are coming in that also need their time. They will switch between them and prioritise where sensible, but they can only ever look at one ticket at a time.
+6. Over several hours, they progress this ticket through to conclusion, identifying its scope and raising requests to the relevant teams to remove the browser add on from affected devices.
+Key points at end:
+- Took approx. 5 hours, with the analyst having to ump between security tickets as priority demanded.
+
+-->
+<section class="slide byhand-slide" id="byhandSlide" data-section="2" data-file="showcase/by-hand.html">
+  <div class="ha" id="byhandRoot">
+    <div class="ha-head">
+      <div class="kicker">The current process</div>
+      <h2>A SOC analyst works the alerts one ticket at a time<span class="dot">.</span></h2>
+      <p class="sub">The same browser-extension alert, progressed by running multiple searches across data platforms to answer questions, one search at a time.<br>Progress, searches, search results all get entered into the ticket by hand.</p>
+    </div>
+
+    <div class="ha-stage">
+      <div class="ha-slot ha-slot--left" data-slot="left"></div>
+
+      <div class="ha-ticket">
+        <div class="ha-ticket-head">
+          <div class="tk-ref">🛡️ Security Zendesk · TICKET-2628635</div>
+          <div class="tk-subj">Potentially malicious browser extension</div>
+          <span class="tk-status" data-tk-status>Under investigation</span>
+        </div>
+        <div class="ha-thread" data-thread>
+          <div class="ha-thread-empty">▶ Play, or press → — the analyst's searches and findings build up here.</div>
+        </div>
+      </div>
+
+      <div class="ha-rightcol">
+        <div class="ha-timebox">
+          <div class="ha-tb-cell"><span class="ha-tb-lbl">Time:</span><span class="ha-tb-val" data-tb-now>13:13</span></div>
+          <div class="ha-tb-sep"></div>
+          <div class="ha-tb-cell"><span class="ha-tb-lbl">Elapsed:</span><span class="ha-tb-val" data-tb-elapsed>0h 00m</span></div>
+        </div>
+        <div class="ha-queue" data-queue>
+          <div class="ha-qhead">
+            <div class="ha-qtitle-main">Ticket queue</div>
+            <div class="ha-qsub"><span class="ha-qsub-lbl">New alerts</span><span class="ha-qcount" data-qcount>0</span></div>
+          </div>
+          <div class="ha-qlist" data-qlist></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

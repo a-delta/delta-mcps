@@ -1,0 +1,85 @@
+<!-- @note
+Here we have a representation of the prototype we're working on for how an AI harness can be used for incident response.
+In this scenario, a SOC analyst drives the harness, asking them to investigate the same ticket we just saw done manually.
+
+On the left you see the orchestrator, this is the agent that will run the investigation, perform the most reasoning, reach conclusions.
+
+In the middle is where you will see the orchestrator spawn sub-agents, like its own team of assistants, to run tasks for it in paralle.
+
+On the right is an overview of the analysis progression.
+
+At the top right you can see the same start time as well as time elapsed so far.
+
+1. At start then, the first thing the orchestrator does is read the investigation skill we've written. This in turn gives the orchestrator a set of investigative principles it must adhere to:
+ - Evidence with verification, not assumptions
+ - don't rely on historic tickets and others ssertions
+ - The skill tells it to read further important information from our knowledge base that is relevant to every analysis, it sets it up with what search tooling its got and where to find more info.
+ - These also tell it that it has to pass several gates or stages of analysis, proving through evidence that the activity appears to be benign at each stage.
+2. Once it has loaded that context, it reads the ticket and assesses what it needs to do next.
+3. It starts with running web-research against the security researcher's website that was shared in the ticket.
+- we can see it pulling out the same indicators and assertions as the human analyst did.
+4. Its next step is to start sub-agents in parallel to trawl the knowledge base for anything relating to the alert. It's looking for details on security runbooks, browser extension approval processes.
+5. It then starts running searches across endpoints, looking for the browser installation on our devices. This isn't just one search, it searches, checks results and iterates.
+6. It then expands the searches, we can now see it looking for web traffic for the different websites the security report said the malicious browser extension used.
+
+-->
+<section class="slide orch-slide" id="orchSlide" data-section="2" data-file="showcase/orchestrator.html">
+  <div class="s5" id="orchRoot">
+    <div class="s5-head">
+      <div class="kicker">One agent to run the investigation · A team of agents to support.</div>
+      <h2>AI incident response<span class="dot">.</span></h2>
+    </div>
+
+    <div class="s5-sub">
+      <span class="prompt">SOC analyst&nbsp;→&nbsp;<b>/investigate-alert 2628635</b></span>
+      <span class="phase"><b>Potentially malicious browser extension</b> · ModHeader · scratch mode (alert-only)</span>
+      <div class="seg" data-speed>
+        <button data-sp="1" class="on">1×</button>
+        <button data-sp="2">2×</button>
+        <button data-sp="4">4×</button>
+      </div>
+      <div class="ha-timebox orch-timebox">
+        <div class="ha-tb-cell"><span class="ha-tb-lbl">Time:</span><span class="ha-tb-val" data-tb-now>13:13</span></div>
+        <div class="ha-tb-sep"></div>
+        <div class="ha-tb-cell"><span class="ha-tb-lbl">Elapsed:</span><span class="ha-tb-val" data-tb-elapsed>0h 00m</span></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="col">
+        <div class="orch">
+          <div class="orch-head">
+            <span class="orch-ico">🧠</span>
+            <div class="orch-name">Orchestrator<span>investigate-alert · root</span></div>
+            <span class="orch-state">reasoning</span>
+          </div>
+          <div class="orch-feed" data-orch-feed></div>
+          <div class="orch-counters">
+            <div class="ctr"><div class="n" data-ctr="s">0</div><div class="l">Searches</div></div>
+            <div class="ctr fnd"><div class="n" data-ctr="f">0</div><div class="l">Findings</div></div>
+            <div class="ctr kbc"><div class="n" data-ctr="k">0</div><div class="l">Knowledge Base reads</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col col-mid">
+        <div class="col-lbl">Sub-agents · spawned in parallel</div>
+        <div class="col-stack" data-stack="mid"></div>
+        <div class="done-q" data-done="mid" hidden><div class="done-lbl">Done</div><div class="done-list" data-donelist="mid"></div></div>
+      </div>
+
+      <div class="col col-prog">
+        <div class="col-lbl">Investigation progress</div>
+        <div class="prog-rail" data-prog></div>
+      </div>
+    </div>
+
+    <div class="tl">
+      <div class="track" data-track>
+        <div class="track-line"></div>
+        <div class="track-fill" data-fill></div>
+        <div class="playhead" data-playhead style="left:0"><div class="grip"></div></div>
+      </div>
+    </div>
+  </div>
+</section>

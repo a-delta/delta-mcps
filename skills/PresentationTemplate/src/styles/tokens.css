@@ -1,0 +1,116 @@
+/* ============================================================
+   FONTS — Tesco Modern (base64 injected at build time)
+   ============================================================ */
+@font-face{font-family:"Tesco Modern";font-weight:300;font-style:normal;font-display:swap;src:url(data:font/woff2;base64,__FONT_LIGHT__) format("woff2");}
+@font-face{font-family:"Tesco Modern";font-weight:400;font-style:normal;font-display:swap;src:url(data:font/woff2;base64,__FONT_REGULAR__) format("woff2");}
+@font-face{font-family:"Tesco Modern";font-weight:500;font-style:normal;font-display:swap;src:url(data:font/woff2;base64,__FONT_MEDIUM__) format("woff2");}
+@font-face{font-family:"Tesco Modern";font-weight:700;font-style:normal;font-display:swap;src:url(data:font/woff2;base64,__FONT_BOLD__) format("woff2");}
+
+/* ============================================================
+   DESIGN TOKENS — Tesco visual identity
+   Palette + typography: assets/reference/tesco-brand.md
+   Change BRAND VALUES here, never in a slide or a component rule.
+   ============================================================ */
+:root{
+  /* ---- brand ---- */
+  --tesco-blue:#003ADC;
+  --tesco-blue-deep:#003d75;
+  --tesco-red:#e81c2d;
+  --tesco-light-grey:#f6f6f6;
+  --tesco-mid-grey:#e5e5e5;
+
+  /* ---- status / severity scales (reusable accents) ---- */
+  --sev-critical:#8c1ac4;
+  --sev-high:#ea5448;
+  --sev-medium:#ef8652;
+  --sev-low:#f7ce55;
+  --success:#008800;
+  --warning:#bd5800;
+  --info:#0074e0;
+
+  /* accent aliases used by components (map to any brand colour) */
+  --accent-a:#39CD39;   /* secondary highlight — e.g. a "demo" card stripe */
+  --accent-b:#D689FF;   /* tertiary highlight — e.g. a "feature" card stripe */
+
+  --font-sans:"Tesco Modern",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+
+  --maxw:1180px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+/* Light theme (default) */
+html[data-theme="light"]{
+  --bg:#ffffff;
+  --page-bg:var(--tesco-light-grey);
+  --surface:#ffffff;
+  --surface-2:#f6f6f6;
+  --surface-3:#eef2f7;
+  --border:#e0e6ee;
+  --text:#333333;
+  --text-strong:#1a1f27;
+  --text-muted:#666666;
+  --chrome:var(--tesco-blue);
+  --on-chrome:#ffffff;
+  --code-bg:#0f2233;
+  --code-text:#e8ecf1;
+  --shadow:0 10px 30px rgba(20,40,70,.12);
+  --shadow-sm:0 2px 8px rgba(20,40,70,.08);
+
+  /* Full-bleed "scene" stages — transparent so the body's --page-bg
+     shows through, identical to every other slide. */
+  --scene-bg:transparent;
+  --scene-text:var(--text);
+  --scene-strong:var(--text-strong);
+  --scene-muted:var(--text-muted);
+  --scene-tile:#ffffff;                 /* card/tile fill on a scene */
+  --scene-tile-border:var(--border);
+  --scene-tile-line:rgba(20,40,70,.12); /* subtle dividers/tracks */
+  --scene-accent:var(--tesco-blue);     /* headings/labels accent */
+  --scene-veil:var(--tesco-light-grey); /* behind boundary labels */
+
+  /* ---- showcase / AI-demo role colours ---- */
+  --human-ink:#5f6b7a;    /* "by-hand" analyst colour */
+  --orch:var(--tesco-blue);
+  --kb:#7b3fe4;   --kb-ink:#4a1f9e;    /* knowledge base agent */
+  --tel:#0f9d8f;  --tel-ink:#0a6f65;   /* telemetry agent */
+  --web:#d9601a;  --web-ink:#a8480f;   /* web-research agent */
+}
+/* Dark theme */
+html[data-theme="dark"]{
+  --bg:#11151c;
+  /* Subtle branded gradient in dark mode. */
+  --page-bg:
+    radial-gradient(1200px 700px at 78% -10%,color-mix(in srgb,var(--tesco-blue) 14%,transparent),transparent 60%),
+    linear-gradient(160deg,#11151c,#0c1a2b);
+  --surface:#1a2029;
+  --surface-2:#222a35;
+  --surface-3:#2a3340;
+  --border:#2f3a48;
+  --text:#e8ecf1;
+  --text-strong:#ffffff;
+  --text-muted:#9aa6b4;
+  --chrome:#0a6fd0;
+  --on-chrome:#ffffff;
+  --code-bg:#0a0f16;
+  --code-text:#e8ecf1;
+  --shadow:0 12px 40px rgba(0,0,0,.5);
+  --shadow-sm:0 2px 10px rgba(0,0,0,.4);
+
+  --scene-bg:transparent;
+  --scene-text:#e8ecf1;
+  --scene-strong:#ffffff;
+  --scene-muted:#9aa6b4;
+  --scene-tile:rgba(255,255,255,.05);
+  --scene-tile-border:rgba(255,255,255,.12);
+  --scene-tile-line:rgba(255,255,255,.1);
+  --scene-accent:#6db3f2;
+  --scene-veil:#11151c;
+
+  /* ---- showcase / AI-demo role colours (dark overrides) ---- */
+  --human-ink:#9aa6b4;
+  --orch:#3a9bf0;
+  --kb:#a37bff;   --kb-ink:#c4a9ff;
+  --tel:#3cc9ba;  --tel-ink:#7fe0d4;
+  --web:#f0894a;  --web-ink:#f5b487;
+}

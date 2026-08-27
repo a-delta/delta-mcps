@@ -1,0 +1,48 @@
+<!-- @note
+KPI COUNTERS — a scene that describes itself. Four big numbers count up
+from zero on arrival (and replay on every return). The target is in
+data-count; the counted digits live in the .val span, with optional
+.prefix / .suffix around them.
+-->
+<section class="slide scene-slide" data-section="1" data-scene="kpi" data-file="examples/kpi.html">
+  <div class="scene">
+    <div class="graph-head">
+      <div class="kicker">Scene · KPI counters</div>
+      <h2>These numbers count up<span class="dot">.</span></h2>
+      <p class="lead">Each figure animates from zero when the slide appears. The target is set in <code>data-count</code>; modifier classes tint the accent.</p>
+    </div>
+    <div class="scene-area">
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi-ico">🔢</div>
+          <div class="kpi-num" data-count="4200"><span class="val">0</span></div>
+          <div class="kpi-lbl">Plain integer</div>
+          <div class="kpi-sub">grouped with a thousands separator</div>
+          <div class="kpi-underline"><i></i></div>
+        </div>
+        <div class="kpi good">
+          <div class="kpi-ico">📈</div>
+          <div class="kpi-num" data-count="98.6"><span class="val">0</span><span class="suffix">%</span></div>
+          <div class="kpi-lbl">Decimal + suffix</div>
+          <div class="kpi-sub"><code>.good</code> tints it green</div>
+          <div class="kpi-underline"><i></i></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-ico">💷</div>
+          <div class="kpi-num" data-count="62.40"><span class="prefix">£</span><span class="val">0</span></div>
+          <div class="kpi-lbl">Prefix + decimal</div>
+          <div class="kpi-sub">the £ sits outside the count</div>
+          <div class="kpi-underline"><i></i></div>
+        </div>
+        <div class="kpi warn">
+          <div class="kpi-ico">⏱️</div>
+          <div class="kpi-num" data-count="24"><span class="val">0</span><span class="suffix">min</span></div>
+          <div class="kpi-lbl">Text suffix</div>
+          <div class="kpi-sub"><code>.warn</code> tints it amber</div>
+          <div class="kpi-underline"><i></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="scan-tag"><span class="pulse"></span>counts replay on every visit</div>
+  </div>
+</section>

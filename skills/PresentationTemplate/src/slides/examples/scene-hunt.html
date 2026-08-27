@@ -1,0 +1,46 @@
+<!-- @note
+HUNT SCENE — parallel specialist swarm. Each .spec-card starts scanning and then
+resolves to "clear" or "hit" after a configurable delay (data-rd, in seconds).
+
+Use data-resolve="hit" for a finding (red), data-resolve="clear" for a pass (green).
+The magnifier panel is decorative — replace the code snippet with your own content,
+or remove it entirely and give .spec-swarm a single-column grid-template-columns.
+
+Good for showing: parallel agents, concurrent workers, simultaneous checks.
+-->
+<section class="slide scene-slide" data-section="1" data-scene="hunt" data-file="examples/scene-hunt.html">
+  <div class="scene stage-scene">
+    <div class="graph-head">
+      <div class="kicker">Scene · parallel specialist swarm</div>
+      <h2>Agents working in parallel<span class="dot">.</span></h2>
+      <p class="lead">Each specialist card starts scanning and resolves independently — one finds a hit, the rest clear. Adjust data-rd (seconds) to control when each resolves.</p>
+    </div>
+    <div class="scene-area">
+      <div class="hunt-layout">
+
+        <div>
+          <div class="spec-swarm">
+            <div class="spec-card pop" data-resolve="hit"   data-rd="2.4" style="--d:.10s"><div class="sc-top"><span class="sc-dot"></span><span class="sc-name">Check A</span></div><div class="sc-scan"><i></i></div><span class="sc-status">scanning…</span></div>
+            <div class="spec-card pop" data-resolve="clear" data-rd="1.5" style="--d:.16s"><div class="sc-top"><span class="sc-dot"></span><span class="sc-name">Check B</span></div><div class="sc-scan"><i></i></div><span class="sc-status">scanning…</span></div>
+            <div class="spec-card pop" data-resolve="clear" data-rd="1.7" style="--d:.22s"><div class="sc-top"><span class="sc-dot"></span><span class="sc-name">Check C</span></div><div class="sc-scan"><i></i></div><span class="sc-status">scanning…</span></div>
+            <div class="spec-card pop" data-resolve="clear" data-rd="1.3" style="--d:.28s"><div class="sc-top"><span class="sc-dot"></span><span class="sc-name">Check D</span></div><div class="sc-scan"><i></i></div><span class="sc-status">scanning…</span></div>
+            <div class="spec-card pop" data-resolve="clear" data-rd="2.1" style="--d:.34s"><div class="sc-top"><span class="sc-dot"></span><span class="sc-name">Check E</span></div><div class="sc-scan"><i></i></div><span class="sc-status">scanning…</span></div>
+            <div class="spec-card pop" data-resolve="clear" data-rd="1.6" style="--d:.40s"><div class="sc-top"><span class="sc-dot"></span><span class="sc-name">Check F</span></div><div class="sc-scan"><i></i></div><span class="sc-status">scanning…</span></div>
+            <div class="spec-card pop" data-resolve="clear" data-rd="1.9" style="--d:.46s"><div class="sc-top"><span class="sc-dot"></span><span class="sc-name">Check G</span></div><div class="sc-scan"><i></i></div><span class="sc-status">scanning…</span></div>
+            <div class="spec-card pop" data-resolve="clear" data-rd="2.3" style="--d:.52s"><div class="sc-top"><span class="sc-dot"></span><span class="sc-name">Check H</span></div><div class="sc-scan"><i></i></div><span class="sc-status">scanning…</span></div>
+          </div>
+        </div>
+
+        <div class="fadein" style="--d:.5s">
+          <div class="mag-panel">
+            <div class="mag-top"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="fn">example.py</span></div>
+            <pre class="mag-code"><span class="line"><span class="tok-com"># Replace this with your own code snippet</span></span><span class="line"><span class="tok-key">def</span> <span class="tok-fn">process</span>(user_id):</span><span class="line">    cursor = db.<span class="tok-fn">cursor</span>()</span><span class="line">    base = <span class="tok-str">"SELECT * FROM records "</span></span><span class="line flaw">    query = base + <span class="tok-str">f"WHERE id = {user_id}"</span></span><span class="line">    cursor.<span class="tok-fn">execute</span>(query)</span><span class="line">    <span class="tok-key">return</span> cursor.<span class="tok-fn">fetchone</span>()</span></pre>
+            <div class="mag-lens"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="scan-tag"><span class="pulse"></span>specialists running in parallel · replay on every visit</div>
+  </div>
+</section>
