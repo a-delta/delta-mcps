@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Splunk MCP Server - build artifacts (bundled JS)
+providers/Splunk_MCP_Server/appserver/static/js/
+
+# drawio temp/backup files
+agents/workflows/.$*.drawio.bkp
+agents/workflows/.$*.drawio.dtmp
