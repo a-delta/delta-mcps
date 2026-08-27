@@ -1,0 +1,137 @@
+/* ============================================================
+   FONTS — Aptos (base64 injected at build time)
+   Body: Aptos. Headers: Aptos Display where available, else Aptos.
+   ============================================================ */
+@font-face{font-family:"Aptos";font-weight:300;font-style:normal;font-display:swap;src:url(data:font/woff2;base64,__FONT_LIGHT__) format("woff2");}
+@font-face{font-family:"Aptos";font-weight:400;font-style:normal;font-display:swap;src:url(data:font/woff2;base64,__FONT_REGULAR__) format("woff2");}
+@font-face{font-family:"Aptos";font-weight:500 600;font-style:normal;font-display:swap;src:url(data:font/woff2;base64,__FONT_SEMIBOLD__) format("woff2");}
+@font-face{font-family:"Aptos";font-weight:700 800;font-style:normal;font-display:swap;src:url(data:font/woff2;base64,__FONT_BOLD__) format("woff2");}
+@font-face{font-family:"Aptos";font-weight:900;font-style:normal;font-display:swap;src:url(data:font/woff2;base64,__FONT_BLACK__) format("woff2");}
+@font-face{font-family:"Aptos";font-weight:400;font-style:italic;font-display:swap;src:url(data:font/woff2;base64,__FONT_ITALIC__) format("woff2");}
+@font-face{font-family:"Aptos";font-weight:700;font-style:italic;font-display:swap;src:url(data:font/woff2;base64,__FONT_BOLD_ITALIC__) format("woff2");}
+/* Aptos Display — emitted only when assets/fonts/Aptos-Display*-web.woff2 exist;
+   otherwise this is empty and --font-display falls through to Aptos. */
+__FONT_FACE_DISPLAY__
+
+/* ============================================================
+   DESIGN TOKENS — Prioclen Consulting (PCL) visual identity
+   Palette + typography: assets/reference/prioclen-brand.md
+   Change BRAND VALUES here, never in a slide or a component rule.
+   ============================================================ */
+:root{
+  /* ---- brand ---- */
+  --pcl-green:#078045;        /* primary   — titles, chrome, key accent */
+  --pcl-green-deep:#016837;   /* secondary — deeper green, gradients/hover */
+  --pcl-green-light:#35c98a;  /* lightened primary — legible on dark backgrounds */
+  --pcl-orange:#f2622e;       /* accent    — the "full stop", emphasis, alerts */
+  --pcl-white:#ffffff;        /* secondary — surfaces, text on brand green */
+  --pcl-light-grey:#f4f6f5;
+  --pcl-mid-grey:#e5e5e5;
+
+  /* ---- status / severity scales (reusable accents) ---- */
+  --sev-critical:#8c1ac4;
+  --sev-high:#ea5448;
+  --sev-medium:#ef8652;
+  --sev-low:#f7ce55;
+  --success:#008800;
+  --warning:#bd5800;
+  --info:#0074e0;
+
+  /* accent aliases used by components (map to any brand colour) */
+  --accent-a:#0aa35a;   /* secondary highlight — e.g. a "demo" card stripe */
+  --accent-b:#D689FF;   /* tertiary highlight — e.g. a "feature" card stripe */
+
+  --font-sans:"Aptos",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-display:"Aptos Display","Aptos",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+
+  --maxw:1180px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+/* Light theme (default) */
+html[data-theme="light"]{
+  --bg:#ffffff;
+  --page-bg:var(--pcl-light-grey);
+  --surface:#ffffff;
+  --surface-2:#f4f6f5;
+  --surface-3:#eaf2ed;
+  --border:#dfe6e1;
+  --text:#333333;
+  --text-strong:#1a231d;
+  --text-muted:#666666;
+  --chrome:var(--pcl-green);
+  --on-chrome:#ffffff;
+  --code-bg:#0e2419;
+  --code-text:#e8f1eb;
+  --shadow:0 10px 30px rgba(15,50,32,.12);
+  --shadow-sm:0 2px 8px rgba(15,50,32,.08);
+
+  /* Logo colours (the inline SVG reads these) */
+  --logo-green:var(--pcl-green);
+  --logo-green-deep:var(--pcl-green-deep);
+  --logo-word:var(--pcl-green);
+  --logo-ink:#141414;
+
+  /* Full-bleed "scene" stages — transparent so the body's --page-bg
+     shows through, identical to every other slide. */
+  --scene-bg:transparent;
+  --scene-text:var(--text);
+  --scene-strong:var(--text-strong);
+  --scene-muted:var(--text-muted);
+  --scene-tile:#ffffff;                 /* card/tile fill on a scene */
+  --scene-tile-border:var(--border);
+  --scene-tile-line:rgba(15,50,32,.12); /* subtle dividers/tracks */
+  --scene-accent:var(--pcl-green);      /* headings/labels accent */
+  --scene-veil:var(--pcl-light-grey);   /* behind boundary labels */
+
+  /* ---- showcase / AI-demo role colours ---- */
+  --human-ink:#5f6b7a;    /* "by-hand" analyst colour */
+  --orch:var(--pcl-green);
+  --kb:#7b3fe4;   --kb-ink:#4a1f9e;    /* knowledge base agent */
+  --tel:#0f9d8f;  --tel-ink:#0a6f65;   /* telemetry agent */
+  --web:#d9601a;  --web-ink:#a8480f;   /* web-research agent */
+}
+/* Dark theme */
+html[data-theme="dark"]{
+  --bg:#0f1613;
+  /* Subtle branded gradient in dark mode. */
+  --page-bg:
+    radial-gradient(1200px 700px at 78% -10%,color-mix(in srgb,var(--pcl-green) 20%,transparent),transparent 60%),
+    linear-gradient(160deg,#0f1613,#0b201a);
+  --surface:#18211d;
+  --surface-2:#202b25;
+  --surface-3:#28352e;
+  --border:#2f3d36;
+  --text:#e8f1eb;
+  --text-strong:#ffffff;
+  --text-muted:#9aada2;
+  --chrome:var(--pcl-green-deep);
+  --on-chrome:#ffffff;
+  --code-bg:#08120d;
+  --code-text:#e8f1eb;
+  --shadow:0 12px 40px rgba(0,0,0,.5);
+  --shadow-sm:0 2px 10px rgba(0,0,0,.4);
+
+  --logo-green:var(--pcl-green-light);
+  --logo-green-deep:#1f9a63;
+  --logo-word:#ffffff;
+  --logo-ink:#ffffff;
+
+  --scene-bg:transparent;
+  --scene-text:#e8f1eb;
+  --scene-strong:#ffffff;
+  --scene-muted:#9aada2;
+  --scene-tile:rgba(255,255,255,.05);
+  --scene-tile-border:rgba(255,255,255,.12);
+  --scene-tile-line:rgba(255,255,255,.1);
+  --scene-accent:var(--pcl-green-light);
+  --scene-veil:#0f1613;
+
+  /* ---- showcase / AI-demo role colours (dark overrides) ---- */
+  --human-ink:#9aada2;
+  --orch:var(--pcl-green-light);
+  --kb:#a37bff;   --kb-ink:#c4a9ff;
+  --tel:#3cc9ba;  --tel-ink:#7fe0d4;
+  --web:#f0894a;  --web-ink:#f5b487;
+}

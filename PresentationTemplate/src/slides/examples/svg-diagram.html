@@ -1,0 +1,83 @@
+<!-- @note
+SVG DIAGRAM — a .fig container holding an inline SVG. Theme-aware fills and
+label classes mean the diagram re-colours automatically when the audience
+switches to dark mode.
+
+Key classes to use on SVG elements:
+  .box      fill — standard surface (white / dark surface in dark mode)
+  .box-hi   fill — highlighted surface (light green tint / dark equivalent)
+  .lbl      text — body weight, strong colour
+  .lbl-sm   text — small body weight
+  .lbl-w    text — white (for labels on coloured fills)
+  .lbl-mid  text — muted colour
+  .lbl-cap  text — uppercase caption / column header
+
+Arrows: draw with <line> or <path> using stroke="var(--pcl-green)" for
+brand-coloured connectors, or stroke="var(--text-muted)" for neutral ones.
+
+Use .fig to wrap the SVG — it flexes to fill the available height.
+-->
+<section class="slide" data-section="0" data-file="examples/svg-diagram.html">
+  <div class="slide-inner" style="display:flex;flex-direction:column;">
+    <div class="kicker">Component · SVG diagram</div>
+    <h2>Theme-aware inline diagrams<span class="dot">.</span></h2>
+    <p class="lead" style="margin-bottom:1rem;">Use <code>.box</code> / <code>.box-hi</code> fills and <code>.lbl*</code> text classes so diagrams invert cleanly in dark mode — no hard-coded hex values needed.</p>
+
+    <div class="fig">
+      <svg viewBox="0 0 800 300" preserveAspectRatio="xMidYMid meet" aria-label="Three-stage pipeline diagram: Source, Processor, Sink">
+        <defs>
+          <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="var(--pcl-green)"/>
+          </marker>
+          <marker id="arr-muted" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="var(--text-muted)"/>
+          </marker>
+        </defs>
+
+        <!-- Column labels -->
+        <text class="lbl-cap" x="140" y="28" text-anchor="middle">Source</text>
+        <text class="lbl-cap" x="400" y="28" text-anchor="middle">Processor</text>
+        <text class="lbl-cap" x="660" y="28" text-anchor="middle">Sink</text>
+
+        <!-- Source boxes -->
+        <rect class="box" x="30"  y="46" width="220" height="52" rx="10" stroke="var(--pcl-green)" stroke-width="1.5"/>
+        <text class="lbl" x="140" y="77" text-anchor="middle">Input A</text>
+
+        <rect class="box" x="30"  y="118" width="220" height="52" rx="10" stroke="var(--pcl-green)" stroke-width="1.5"/>
+        <text class="lbl" x="140" y="149" text-anchor="middle">Input B</text>
+
+        <rect class="box" x="30"  y="190" width="220" height="52" rx="10" stroke="var(--text-muted)" stroke-width="1.5" stroke-dasharray="5,4"/>
+        <text class="lbl-mid" x="140" y="221" text-anchor="middle">Optional input</text>
+
+        <!-- Processor box (highlighted) -->
+        <rect class="box-hi" x="290" y="90" width="220" height="120" rx="12" stroke="var(--success)" stroke-width="2"/>
+        <text class="lbl" x="400" y="144" text-anchor="middle" font-weight="700">Transform</text>
+        <text class="lbl-sm" x="400" y="168" text-anchor="middle">validate · enrich · route</text>
+
+        <!-- Sink boxes -->
+        <rect class="box" x="550" y="90"  width="210" height="52" rx="10" stroke="var(--pcl-green)" stroke-width="1.5"/>
+        <text class="lbl" x="655" y="121" text-anchor="middle">Output A</text>
+
+        <rect class="box" x="550" y="158" width="210" height="52" rx="10" stroke="var(--pcl-green)" stroke-width="1.5"/>
+        <text class="lbl" x="655" y="189" text-anchor="middle">Output B</text>
+
+        <!-- Arrows: sources → processor -->
+        <line x1="250" y1="72"  x2="290" y2="125" stroke="var(--pcl-green)" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="250" y1="144" x2="290" y2="150" stroke="var(--pcl-green)" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="250" y1="216" x2="290" y2="175" stroke="var(--text-muted)" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr-muted)"/>
+
+        <!-- Arrows: processor → sinks -->
+        <line x1="510" y1="130" x2="550" y2="116" stroke="var(--pcl-green)" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="510" y1="160" x2="550" y2="184" stroke="var(--pcl-green)" stroke-width="1.5" marker-end="url(#arr)"/>
+
+        <!-- Legend -->
+        <line x1="30" y1="275" x2="60" y2="275" stroke="var(--pcl-green)" stroke-width="1.5" marker-end="url(#arr)"/>
+        <text class="lbl-sm" x="68" y="279">Required flow</text>
+        <line x1="200" y1="275" x2="230" y2="275" stroke="var(--text-muted)" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr-muted)"/>
+        <text class="lbl-sm" x="238" y="279">Optional flow</text>
+        <rect class="box-hi" x="370" y="265" width="16" height="16" rx="3" stroke="var(--success)" stroke-width="1.5"/>
+        <text class="lbl-sm" x="394" y="278">Highlighted node</text>
+      </svg>
+    </div>
+  </div>
+</section>

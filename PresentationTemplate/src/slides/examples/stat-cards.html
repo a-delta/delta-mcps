@@ -1,0 +1,47 @@
+<!-- @note
+STAT CARDS — a .stat-row of metric cards. Each card has a coloured top
+border, a big value (.stat-val), a short label (.stat-lbl), and an
+optional supporting line (.stat-sub) or badge (.stat-trend).
+
+Status variants:
+  default   PCL green top border and value
+  .good     green  — on-track, positive
+  .warn     amber  — at-risk, watch
+  .bad      orange — off-track, failing
+
+Use .stat-trend inside a card to drop a .trend badge below the value.
+Pair with data-frag to reveal cards one at a time.
+-->
+<section class="slide" data-section="0" data-file="examples/stat-cards.html">
+  <div class="slide-inner">
+    <div class="kicker">Component · stat cards</div>
+    <h2>Headline metrics at a glance<span class="dot">.</span></h2>
+    <p class="lead" style="margin-bottom:1.4rem;">Each card has a coloured top border — default green, <code>.good</code> green, <code>.warn</code> amber, <code>.bad</code> red. Reveal individually with <code>data-frag</code>.</p>
+    <div class="stat-row">
+      <div class="stat good frag" data-frag>
+        <div class="stat-val">98.6%</div>
+        <div class="stat-lbl">Availability</div>
+        <div class="stat-sub">Rolling 30 days</div>
+        <div class="stat-trend"><span class="trend trend-good">↑ +0.4pp</span></div>
+      </div>
+      <div class="stat frag" data-frag>
+        <div class="stat-val">4,200</div>
+        <div class="stat-lbl">Deployments</div>
+        <div class="stat-sub">This quarter</div>
+        <div class="stat-trend"><span class="trend trend-stable">→ stable</span></div>
+      </div>
+      <div class="stat warn frag" data-frag>
+        <div class="stat-val">24 min</div>
+        <div class="stat-lbl">Mean time to restore</div>
+        <div class="stat-sub">Target &lt; 15 min</div>
+        <div class="stat-trend"><span class="trend trend-bad">↓ +6 min</span></div>
+      </div>
+      <div class="stat bad frag" data-frag>
+        <div class="stat-val">3.1%</div>
+        <div class="stat-lbl">Change failure rate</div>
+        <div class="stat-sub">Elite threshold 5%</div>
+        <div class="stat-trend"><span class="trend trend-good">↑ improving</span></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+<!-- @note
+BAR CHART — a scene describing itself. Each .bar[data-val] grows its
+column to that height (0–100, % of the axis) on arrival; the value label
+reveals as it lands. Modifier classes .alt / .alert (alias .red) recolour a column.
+-->
+<section class="slide scene-slide" data-section="1" data-scene="bars" data-file="examples/bar-chart.html">
+  <div class="scene">
+    <div class="graph-head">
+      <div class="kicker">Scene · bar chart</div>
+      <h2>These bars grow from the axis<span class="dot">.</span></h2>
+      <p class="lead">Each column's height comes from <code>data-val</code> (0–100). The last bar uses <code>.alt</code> to stand out.</p>
+    </div>
+    <div class="scene-area">
+      <div class="bars">
+        <div class="bar" data-val="40"><div class="bar-col"><span class="bar-val">40</span></div><div class="bar-lbl">val=40</div></div>
+        <div class="bar" data-val="55"><div class="bar-col"><span class="bar-val">55</span></div><div class="bar-lbl">val=55</div></div>
+        <div class="bar" data-val="68"><div class="bar-col"><span class="bar-val">68</span></div><div class="bar-lbl">val=68</div></div>
+        <div class="bar" data-val="80"><div class="bar-col"><span class="bar-val">80</span></div><div class="bar-lbl">val=80</div></div>
+        <div class="bar alt" data-val="95"><div class="bar-col"><span class="bar-val">95</span></div><div class="bar-lbl">.alt</div></div>
+      </div>
+    </div>
+    <div class="scan-tag"><span class="pulse"></span>columns animate up on arrival</div>
+  </div>
+</section>

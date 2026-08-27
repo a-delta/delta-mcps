@@ -1,0 +1,35 @@
+<!-- @note
+PROGRESS BARS — a scene describing itself. Each .pl-row[data-val] fills
+its horizontal track to that percentage on arrival; the value reveals as
+it lands. Modifier classes .alt / .good / .alert (alias .red) recolour a bar.
+-->
+<section class="slide scene-slide" data-section="1" data-scene="progress" data-file="examples/progress.html">
+  <div class="scene">
+    <div class="graph-head">
+      <div class="kicker">Scene · progress bars</div>
+      <h2>These bars fill sideways<span class="dot">.</span></h2>
+      <p class="lead">A labelled horizontal fill per row — the width comes from <code>data-val</code>. Use them for shares, completion, or capacity.</p>
+    </div>
+    <div class="scene-area">
+      <div class="progress-list">
+        <div class="pl-row" data-val="82">
+          <div class="pl-head"><span class="pl-lbl">Default (brand green)</span><span class="pl-val">82%</span></div>
+          <div class="pl-track"><i></i></div>
+        </div>
+        <div class="pl-row alt" data-val="64">
+          <div class="pl-head"><span class="pl-lbl">.alt (secondary accent)</span><span class="pl-val">64%</span></div>
+          <div class="pl-track"><i></i></div>
+        </div>
+        <div class="pl-row good" data-val="91">
+          <div class="pl-head"><span class="pl-lbl">.good (green)</span><span class="pl-val">91%</span></div>
+          <div class="pl-track"><i></i></div>
+        </div>
+        <div class="pl-row alert" data-val="38">
+          <div class="pl-head"><span class="pl-lbl">.alert (orange)</span><span class="pl-val">38%</span></div>
+          <div class="pl-track"><i></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="scan-tag"><span class="pulse"></span>fills replay on every visit</div>
+  </div>
+</section>

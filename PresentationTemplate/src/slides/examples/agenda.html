@@ -1,0 +1,30 @@
+<!-- @note
+CARD GRID — this slide explains itself. Three .card blocks, each with a
+coloured left stripe set by a modifier (default / .alt / .feature).
+data-frag reveals them one press at a time. Use .cols-2 / .cols-4 for
+other counts.
+-->
+<section class="slide" data-section="0" data-file="examples/agenda.html">
+  <div class="slide-inner">
+    <div class="kicker">Component · card grid</div>
+    <h2>This is a card grid<span class="dot">.</span></h2>
+    <p class="lead">Three cards with a coloured left stripe, revealed one at a time. The stripe colour is just a modifier class.</p>
+    <div class="card-grid">
+      <div class="card frag" data-frag>
+        <div class="n">Default</div>
+        <h3>Green stripe</h3>
+        <p>A plain <code>.card</code> — the stripe uses the primary brand green.</p>
+      </div>
+      <div class="card alt frag" data-frag>
+        <div class="n">.alt</div>
+        <h3>Secondary stripe</h3>
+        <p>Add <code>.alt</code> and the stripe switches to the secondary accent.</p>
+      </div>
+      <div class="card feature frag" data-frag>
+        <div class="n">.feature</div>
+        <h3>Tertiary stripe</h3>
+        <p>Add <code>.feature</code> for the tertiary accent. Same card, new colour.</p>
+      </div>
+    </div>
+  </div>
+</section>

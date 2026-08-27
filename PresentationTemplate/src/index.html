@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-mode="deck">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prioclen Consulting — Presentation</title>
+<style>
+/* @build:inline styles/tokens.css */
+/* @build:inline styles/base.css */
+/* @build:inline styles/chrome.css */
+/* @build:inline styles/slides.css */
+/* @build:inline styles/console.css */
+/* @build:inline styles/local.css */   /* local deck styles (--deck only; empty otherwise) */
+</style>
+</head>
+<body>
+
+<!-- ===================== TOP CHROME ===================== -->
+<div id="topbar">
+  <div id="brand">
+    <span class="logo logo-mark">__LOGO_MARK_SVG__</span>
+    <span class="sep"></span>
+    <span class="tag">Prioclen Consulting</span>
+  </div>
+  <div class="spacer"></div>
+  <div class="section-pill">
+    <span id="sectName">Part one</span>
+  </div>
+</div>
+
+<!-- ===================== DECK (the presentation) ===================== -->
+<div id="deck">
+<!-- @build:inline slides.html -->
+</div>
+
+<!-- ===================== BOTTOM CHROME ===================== -->
+<div id="counter"><span class="sect" id="cSect">1</span> &middot; <span id="cNum">1</span>/<span id="cTot">1</span></div>
+<div id="controls">
+  <button class="btn icon" id="btnTheme" title="Toggle light / dark (T)">◐</button>
+  <button class="btn icon" id="btnPresent" title="Presenter mode (P)">🖥</button>
+  <button class="btn icon" id="btnLaser" title="Laser pointer (L)" aria-pressed="false">🔴</button>
+  <button class="btn icon" id="btnHelp" title="Shortcuts (?)">?</button>
+  <button class="btn icon" id="btnPrev" title="Previous">‹</button>
+  <button class="btn primary" id="btnNext" title="Next">Next ›</button>
+</div>
+<div id="progress"><div class="fill"></div></div>
+<div class="hint" id="hint">Use → / ← or Space to navigate &middot; press <b>P</b> for presenter mode</div>
+
+<!-- ===================== HELP ===================== -->
+<div id="help"><div class="card">
+  <h3>Keyboard shortcuts</h3>
+  <table>
+    <tr><td><kbd>→</kbd> <kbd>Space</kbd></td><td>Next step / slide</td></tr>
+    <tr><td><kbd>←</kbd></td><td>Previous</td></tr>
+    <tr><td><kbd>P</kbd></td><td>Enter presenter mode (opens the presentation window)</td></tr>
+    <tr><td><kbd>Esc</kbd></td><td>Exit fullscreen, then exit presenter mode</td></tr>
+    <tr><td><kbd>T</kbd></td><td>Toggle light / dark theme</td></tr>
+    <tr><td><kbd>L</kbd></td><td>Toggle laser pointer</td></tr>
+    <tr><td><kbd>F</kbd></td><td>Fullscreen</td></tr>
+    <tr><td><kbd>Home</kbd></td><td>First slide</td></tr>
+    <tr><td><kbd>?</kbd></td><td>Show / hide this help</td></tr>
+  </table>
+</div></div>
+
+<!-- ===================== PRESENTER CONSOLE (this window, after P) ===================== -->
+<div id="console">
+  <div class="con-head">
+    <span class="logo logo-mark">__LOGO_MARK_SVG__</span>
+    <span class="badge">Presenter console</span>
+    <span class="where">Section <b id="conSect">—</b> &middot; slide <b id="conIdx">—</b></span>
+    <span class="spacer"></span>
+    <span class="total" id="conTotal">total 0:00</span>
+  </div>
+
+  <div class="con-main">
+    <div class="con-panel con-next-wrap">
+      <div style="display:flex;flex-direction:column;min-height:0;flex:1;">
+        <h4>Speaker notes — this slide</h4>
+        <div class="con-notes" id="conNotes">Opening the presentation window…</div>
+      </div>
+      <div class="con-nextbox">
+        <div class="lbl">Coming up next</div>
+        <div class="con-next-title" id="conNextTitle">—</div>
+        <div class="con-next-notes" id="conNextNotes"></div>
+      </div>
+    </div>
+
+    <div class="con-panel con-timing">
+      <h4>Timing — <span id="conSectName">section</span></h4>
+      <div class="con-bigtime"><span class="t" id="conElapsed">0:00</span><span class="of">/ budget <span id="conBudget">0:00</span></span></div>
+      <div class="con-bar"><div id="conBar"></div></div>
+      <div class="con-meta"><span id="conRemain">on budget</span><span id="conPace"></span></div>
+      <div class="con-line" id="conReveals"></div>
+      <div class="con-demo" id="conDemo"></div>
+    </div>
+  </div>
+
+  <div class="con-foot">
+    <button class="btn" id="conPrev">‹ Back</button>
+    <button class="btn primary" id="conNext">Next ›</button>
+    <button class="btn" id="conTheme">◐ Theme</button>
+    <button class="btn" id="conReopen" title="Re-open the presentation window">↗ Presentation</button>
+    <button class="btn" id="conExit" title="Leave presenter mode (Esc)">✕ Exit presenter</button>
+    <span class="spacer"></span>
+    <span class="status" id="conStatus">presentation window open</span>
+  </div>
+</div>
+
+<script>
+/* Speaker notes are authored in an @note block atop each slide file under
+   src/slides/… ; build.js extracts them here (keyed by slide position) and
+   strips them from the audience deck. Never rendered to the projector. */
+/* @build:notes */
+</script>
+<script>
+/* @build:inline js/scenes.js */
+</script>
+<script>
+/* Local deck code (--deck only; empty otherwise). Runs after scenes.js so it
+   can call Scenes.register(), and before deck.js so window.DECK_SECTIONS is set. */
+/* @build:inline js/local.js */
+</script>
+<script>
+/* @build:inline js/deck.js */
+</script>
+<script>
+/* @build:inline js/byhand.js */
+</script>
+<script>
+/* @build:inline js/orch.js */
+</script>
+<script>
+/* @build:inline js/laser.js */
+</script>
+<script>
+/* @build:inline js/editmode.js */
+</script>
+</body>
+</html>

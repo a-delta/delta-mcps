@@ -1,0 +1,84 @@
+<!-- @note
+BADGES — three inline chip families for status and classification.
+
+.tier   Maturity/capability level: .tier-elite, .tier-high, .tier-medium, .tier-low
+.trend  Direction indicator:       .trend-good, .trend-bad, .trend-stable
+.pill   Filled rounded badge:      .pill.success, .pill.warn, .pill.danger,
+                                   .pill.info, .pill.muted (default = PCL green)
+
+All three families are inline — drop them into any paragraph, table cell,
+card, or bullet. Colours draw from the existing token set so they invert
+cleanly in dark mode.
+-->
+<section class="slide" data-section="0" data-file="examples/badges.html">
+  <div class="slide-inner">
+    <div class="kicker">Component · badges</div>
+    <h2>Tiers, trends and pills<span class="dot">.</span></h2>
+
+    <div class="two-col" style="margin-top:1.8rem;gap:2.4rem;">
+      <div class="tc-main">
+
+        <p style="font-size:clamp(14px,1.3vw,17px);color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.7rem;">Tier chips <code>.tier</code></p>
+        <p style="font-size:clamp(15px,1.4vw,18px);line-height:2.2;margin-bottom:1.4rem;">
+          <span class="tier tier-elite">Elite</span>&ensp;
+          <span class="tier tier-high">High</span>&ensp;
+          <span class="tier tier-medium">Medium</span>&ensp;
+          <span class="tier tier-low">Low</span>
+        </p>
+
+        <p style="font-size:clamp(14px,1.3vw,17px);color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.7rem;">Trend badges <code>.trend</code></p>
+        <p style="font-size:clamp(15px,1.4vw,18px);line-height:2.2;margin-bottom:1.4rem;">
+          <span class="trend trend-good">↑ improving</span>&ensp;
+          <span class="trend trend-bad">↓ degrading</span>&ensp;
+          <span class="trend trend-stable">→ stable</span>
+        </p>
+
+        <p style="font-size:clamp(14px,1.3vw,17px);color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.7rem;">Pill badges <code>.pill</code></p>
+        <p style="font-size:clamp(15px,1.4vw,18px);line-height:2.4;">
+          <span class="pill">Default</span>&ensp;
+          <span class="pill success">Success</span>&ensp;
+          <span class="pill warn">Warning</span>&ensp;
+          <span class="pill danger">Danger</span>&ensp;
+          <span class="pill info">Info</span>&ensp;
+          <span class="pill muted">Muted</span>
+        </p>
+
+      </div>
+      <aside class="tc-aside">
+        <p style="font-size:clamp(14px,1.3vw,17px);color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.8rem;">In context</p>
+        <table style="width:100%;border-collapse:collapse;font-size:clamp(13px,1.2vw,16px);">
+          <thead>
+            <tr style="border-bottom:2px solid var(--border);">
+              <th style="text-align:left;padding:.4rem .5rem;color:var(--text-muted);font-weight:700;font-size:.75em;text-transform:uppercase;letter-spacing:.06em;">Metric</th>
+              <th style="text-align:left;padding:.4rem .5rem;color:var(--text-muted);font-weight:700;font-size:.75em;text-transform:uppercase;letter-spacing:.06em;">Level</th>
+              <th style="text-align:left;padding:.4rem .5rem;color:var(--text-muted);font-weight:700;font-size:.75em;text-transform:uppercase;letter-spacing:.06em;">Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:.5rem .5rem;color:var(--text);">Deploy freq.</td>
+              <td style="padding:.5rem .5rem;"><span class="tier tier-elite">Elite</span></td>
+              <td style="padding:.5rem .5rem;"><span class="trend trend-good">↑ up</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:.5rem .5rem;color:var(--text);">Lead time</td>
+              <td style="padding:.5rem .5rem;"><span class="tier tier-high">High</span></td>
+              <td style="padding:.5rem .5rem;"><span class="trend trend-stable">→ flat</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:.5rem .5rem;color:var(--text);">MTTR</td>
+              <td style="padding:.5rem .5rem;"><span class="tier tier-medium">Medium</span></td>
+              <td style="padding:.5rem .5rem;"><span class="trend trend-bad">↓ down</span></td>
+            </tr>
+            <tr>
+              <td style="padding:.5rem .5rem;color:var(--text);">Change fail rate</td>
+              <td style="padding:.5rem .5rem;"><span class="tier tier-low">Low</span></td>
+              <td style="padding:.5rem .5rem;"><span class="trend trend-good">↑ up</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </aside>
+    </div>
+
+  </div>
+</section>

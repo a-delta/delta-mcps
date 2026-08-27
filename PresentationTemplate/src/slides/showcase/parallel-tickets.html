@@ -1,0 +1,177 @@
+<!-- @note
+Riff of the slides
+-->
+<section class="slide pt-slide" id="ptSlide" data-section="2" data-file="showcase/parallel-tickets.html">
+  <div class="s6" id="ptRoot">
+    <div class="s6-head">
+      <div class="kicker">One investigation becomes many · AI triage across the SOC queue.</div>
+      <h2>Many alerts, investigated in parallel<span class="dot">.</span></h2>
+    </div>
+
+    <div class="s6-sub">
+      <span class="prompt">SOC queue&nbsp;→&nbsp;<b>AI triage · running in parallel</b></span>
+    </div>
+
+    <div class="s6-stage">
+      <div class="pt-variant pt-C" data-stack="C"></div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    "use strict";
+    var root = document.getElementById("ptRoot");
+    if (!root || root.dataset.wired) return;
+    root.dataset.wired = "1";
+    var section = document.getElementById("ptSlide");
+
+    // status meta: label + icon per verdict state
+    var ST = {
+      escalate: { cls:"st-escalate", label:"Escalate",              ico:"⚖️" },
+      progress: { cls:"st-progress", label:"Analysis in progress",  ico:"⚙" },
+      second:   { cls:"st-second",   label:"Needs second opinion",  ico:"👥" },
+      benign:   { cls:"st-benign",   label:"Benign · ready for closure", ico:"✓" }
+    };
+
+    // 18 investigations — 8 real (ai-soc-kb-tools/investigations) + 10 representative fillers.
+    // arrive = ms after reveal a ticket drops in (0 = the folded ModHeader ticket only).
+    // work = ms it spends "in progress" before settling into its verdict (longer for
+    // some). Everything except the folded ticket starts hidden and lands as a new,
+    // still-working ticket; the queue fills over ~30s (three rows of six), and the
+    // handful still running then resolve to benign at staggered times, ~30–38s, so
+    // every ticket is complete by the end (only the ModHeader case stays escalated).
+    var T = [
+      { ref:"2628635", title:"Potentially malicious browser extension", sev:"High",     status:"escalate", conf:91,   arrive:0 },
+      { ref:"2598952", title:"Defense-evasion targeted alerting (Sophos)", sev:"Low",    status:"benign",   conf:97,   arrive:1500,  work:2000 },
+      { ref:"2632677", title:"Shellcode binary to HTTP/S C2 server",     sev:"Critical", status:"benign",   conf:90,   arrive:3100,  work:26500 },
+      { ref:"2620414", title:"Defense-evasion targeted alerting (Sophos)", sev:"Low",    status:"benign",   conf:95,   arrive:4700,  work:2200 },
+      { ref:"2628808", title:"Defense-evasion targeted alerting (Sophos)", sev:"Low",    status:"benign",   conf:93,   arrive:6300,  work:2600 },
+      { ref:"2629517", title:"Brute-force on LDAP authentication (4 endpoints)", sev:"High", status:"second", conf:64, arrive:7900, work:3000 },
+      { ref:"2634990", title:"Impossible-travel sign-in (Microsoft 365)", sev:"Medium",  status:"benign",   conf:89,   arrive:9500,  work:1800 },
+      { ref:"2634507", title:"Suspicious Kerberos network connection",   sev:"High",     status:"benign",   conf:88,   arrive:11100, work:21000 },
+      { ref:"2635240", title:"DLP: bulk file share to personal drive",   sev:"Medium",   status:"benign",   conf:86,   arrive:12700, work:2400 },
+      { ref:"2632506", title:"RunMRU registry key — suspicious URI",     sev:"Medium",   status:"benign",   conf:88,   arrive:14300, work:2600 },
+      { ref:"2635388", title:"Reported phishing URL click",              sev:"Low",      status:"benign",   conf:92,   arrive:15900, work:2000 },
+      { ref:"2636104", title:"Anomalous OAuth app consent granted",      sev:"Medium",   status:"benign",   conf:90,   arrive:17500, work:2200 },
+      { ref:"2635112", title:"RMM tool indicator observed (LolRMM)",     sev:"Low",      status:"benign",   conf:94,   arrive:19100, work:16000 },
+      { ref:"2636210", title:"Mass file download from SharePoint",       sev:"Medium",   status:"benign",   conf:87,   arrive:20700, work:2400 },
+      { ref:"2636333", title:"New admin account created off-hours",      sev:"High",     status:"benign",   conf:94,   arrive:22300, work:1800 },
+      { ref:"2636478", title:"Possible data exfiltration to external host", sev:"High",  status:"benign",   conf:86,   arrive:23900, work:13600 },
+      { ref:"2636512", title:"Suspicious encoded PowerShell command",    sev:"Medium",   status:"benign",   conf:91,   arrive:25500, work:2200 },
+      { ref:"2636650", title:"Geo-anomalous VPN login",                  sev:"Low",      status:"benign",   conf:96,   arrive:27100, work:2000 }
+    ];
+
+    var band = c => c >= 85 ? "hi" : c >= 75 ? "mid" : "lo";
+
+    function confHTML(conf) {
+      return conf == null
+        ? '<div class="pt-conf pt-conf--pending"><div class="pt-conf-row"><span>Confidence</span><span class="pt-conf-n">—</span></div><div class="pt-bar pt-bar--pending"><i></i></div></div>'
+        : '<div class="pt-conf"><div class="pt-conf-row"><span>Confidence</span><span class="pt-conf-n">' + conf + '%</span></div>'
+          + '<div class="pt-bar pt-bar--' + band(conf) + '"><i style="width:' + conf + '%"></i></div></div>';
+    }
+    function cardInner(t, state) {
+      var m = ST[state];
+      return '<div class="pt-cardtop"><span class="pt-ref">🛡️ Ticket-' + t.ref + '</span>'
+        + '<span class="pt-sev pt-sev--' + t.sev.toLowerCase() + '">' + t.sev + '</span></div>'
+        + '<div class="pt-title">' + t.title + '</div>'
+        + '<div class="pt-badge"><span class="pt-bico">' + m.ico + '</span>' + m.label + '</div>'
+        + confHTML(state === "progress" ? null : t.conf);
+    }
+    // opts: { state, isNew, settle }
+    function card(t, i, opts) {
+      opts = opts || {};
+      var state = opts.state || t.status;
+      var extra = (opts.isNew ? " pt-new" : "") + (opts.settle ? " pt-settle" : "");
+      return '<article class="pt-card ' + ST[state].cls + extra + '" data-ref="' + t.ref
+        + '" style="animation-delay:' + ((i || 0) * 55) + 'ms">' + cardInner(t, state) + '</article>';
+    }
+
+    // ---- timers (cleared on every replay so nothing stacks) ----
+    var timers = [];
+    function clearT() { timers.forEach(clearTimeout); timers.length = 0; }
+    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+
+    // The ModHeader ticket folds in from the orchestrator's end-state, landing on
+    // the top-left card, then pulses green for continuity. FLIP: a ghost travels to
+    // the hero's slot while the real hero card stays hidden until the fold lands,
+    // so the destination pane only appears once the moving ticket has arrived.
+    function playCollapse(host, hero) {
+      var grid = host.querySelector(".pt-grid");
+      hero = hero || (grid && grid.querySelector(".pt-card"));
+      var stage = root.querySelector(".s6-stage");
+      if (!hero || !stage) return;
+      var hr = hero.getBoundingClientRect(), sr = stage.getBoundingClientRect();
+      if (!hr.width) { hero.style.visibility = ""; return; }
+      var ghost = document.createElement("div");
+      ghost.className = "pt-ghost";
+      ghost.innerHTML = card(T[0], 0);
+      // the ghost's card must sit still inside the frame — kill its entry animation
+      // so it lands pixel-aligned with the real hero card underneath
+      var gc = ghost.querySelector(".pt-card"); if (gc) gc.style.animation = "none";
+      ghost.style.cssText = "position:absolute;margin:0;z-index:9;left:" + (hr.left - sr.left)
+        + "px;top:" + (hr.top - sr.top) + "px;width:" + hr.width + "px;height:" + hr.height + "px;";
+      stage.appendChild(ghost);
+      var dx = sr.width / 2 - ((hr.left - sr.left) + hr.width / 2);
+      var dy = sr.height * 0.12 - (hr.top - sr.top);
+      ghost.style.transformOrigin = "center top";
+      ghost.style.transform = "translate(" + dx + "px," + dy + "px) scale(1.5)";
+      ghost.getBoundingClientRect(); // reflow so the jump-out isn't animated
+      ghost.style.transition = "transform .8s cubic-bezier(.4,.75,.3,1), opacity .3s ease .62s";
+      requestAnimationFrame(function () { ghost.style.transform = "translate(0,0) scale(1)"; ghost.style.opacity = "0"; });
+      later(function () { hero.style.visibility = ""; }, 800);   // reveal the pane only once the fold has landed
+      later(function () { ghost.remove(); }, 950);
+      // pulse only after the fold has fully finished (ghost gone), not during it.
+      // clear the inline animation:none (set while hidden) so the pulse can run.
+      later(function () { hero.style.animation = ""; hero.classList.add("pt-pulse"); }, 1150);
+      later(function () { hero.classList.remove("pt-pulse"); hero.style.animation = "none"; }, 3400);
+    }
+
+    // a working ticket resolves into its final verdict
+    function settle(grid, t) {
+      var el = grid.querySelector('.pt-card[data-ref="' + t.ref + '"]');
+      if (!el) return;
+      el.className = "pt-card " + ST[t.status].cls + " pt-settle";
+      el.innerHTML = cardInner(t, t.status);
+      var bar = el.querySelector(".pt-bar i");
+      if (bar && t.conf != null) {
+        var w = bar.style.width; bar.style.width = "0%"; bar.getBoundingClientRect();
+        requestAnimationFrame(function () { bar.style.width = w; });
+      }
+    }
+
+    function render() {
+      clearT();
+      var host = root.querySelector('[data-stack="C"]');
+      // resting state (presenter jumps straight here / other window): full grid, no motion
+      if (!section.classList.contains("active")) {
+        host.innerHTML = '<div class="pt-grid">' + T.map((t, i) => card(t, i)).join("") + '</div>';
+        return;
+      }
+      var present  = T.filter(t => !t.arrive);
+      var arrivals = T.filter(t => t.arrive).sort((a, b) => a.arrive - b.arrive);
+      host.innerHTML = '<div class="pt-grid">' + present.map((t, i) => card(t, i)).join("") + '</div>';
+      var grid = host.querySelector(".pt-grid");
+      var hero = grid.querySelector(".pt-card");
+      // hidden until the fold lands; no entry animation (the fold IS its entrance),
+      // so playCollapse measures its true resting rect and the ghost lands exactly
+      if (hero) { hero.style.visibility = "hidden"; hero.style.animation = "none"; }
+      later(function () { playCollapse(host, hero); }, 60);
+      arrivals.forEach(function (t) {
+        later(function () {
+          // arrives brand-new and still being worked, whatever its eventual verdict
+          grid.insertAdjacentHTML("beforeend", card(t, 0, { isNew: true, state: "progress" }));
+          // ...then settles into its verdict after a spell (longer for some than others)
+          if (t.status !== "progress" && t.work) later(function () { settle(grid, t); }, t.work);
+        }, t.arrive);
+      });
+    }
+
+    // replay the reveal every time the slide becomes active (any window)
+    new MutationObserver(function () {
+      if (section.classList.contains("active")) render();
+    }).observe(section, { attributes:true, attributeFilter:["class"] });
+
+    render();
+  })();
+  </script>
+</section>
